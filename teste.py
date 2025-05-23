@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from wordclud import WordCloud
+from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
 texto = st.text_input("Digite a letra de uma música sem pontuações: ")
