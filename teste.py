@@ -2,6 +2,6 @@ import streamlit as st
 import pandas as pd
 
 st.write("""
-# My first app 
-Hello *world!*
+# Grande ganho
+Jogue no tigrinho *agora!*
 """)
