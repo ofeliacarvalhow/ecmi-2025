@@ -3,6 +3,9 @@ import pandas as pd
 
 st.write("""
 # Grande ganho
+
+*Nunca. Pare. De. Apostar!!!!*
+
 # Jogue no tigrinho *agora!*
-*nunca. pare. de. apostar!!!!*
+
 """)
