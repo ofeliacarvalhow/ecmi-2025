@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 st.title('Nível de educação e renda')
 
-url = 'https://github.com/ofeliacarvalhow/ecmi-2025/blob/main/adult11.csv'
+url = 'https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/main/adult11.csv'
 df = pd.read_csv(url)
 
 st.subheader('Nível de escolaridade das pessoas')
