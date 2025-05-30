@@ -25,5 +25,3 @@ ax2.set_ylabel('Pessoas')
 ax2.set_xlabel('Escolaridade')
 ax2.set_title('Renda (<=50K e >50K) em relacao a educacao')
 st.pyplot(fig2)
-
-streamlit run app.py
