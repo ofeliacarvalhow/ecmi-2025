@@ -144,5 +144,3 @@ else:
     ax.invert_yaxis()
 
 st.pyplot(fig)
-
-streamlit run
