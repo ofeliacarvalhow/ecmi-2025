@@ -2,4 +2,3 @@ pandas
 wordcloud
 streamlit
 bs4
-BeautifulSoup
