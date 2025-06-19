@@ -92,7 +92,7 @@ top = palavrascont.most_common(10)
 print(palavrascont)
 print(top)
 
-df = pd.read_csv('noticias_cnn(3).csv')
+df = pd.read_csv('noticias_cnn.csv')
 if 'Data' not in df.columns:
     df['Data'] = pd.Timestamp.now()
 else:
