@@ -120,7 +120,7 @@ qtd = st.slider("Quantidade de palavras:", 5, 30, 10)
 
 if modo == "Por dia":
     datas_disponiveis = df['Data'].dt.date.unique()
-    data_escolhida = st.date_input("Escolha a data:", value=datas_disponiveis[0])
+    data_escolhida = st.selectbox("Escolha uma data disponível:", sorted(datas_disponiveis))
     df_filtrado = df[df['Data'].dt.date == data_escolhida]
 else:
     df_filtrado = df
@@ -144,3 +144,40 @@ else:
     ax.invert_yaxis()
 
 st.pyplot(fig)
+
+st.markdown("## Pesquisar ou comparar palavras específicas")
+
+opcao = st.radio("Tipo de busca:", ["Pesquisar uma palavra", "Comparar duas palavras"])
+
+if opcao == "Pesquisar uma palavra":
+    palavra = st.text_input("Digite a palavra para pesquisar").strip().lower()
+
+    if palavra:
+        if modo == "Por dia":
+            total = sum([1 for noticia in df_filtrado["Notícias"].dropna() if palavra in limpar_texto(noticia)])
+        else:
+            total = sum([1 for noticia in df["Notícias"].dropna() if palavra in limpar_texto(noticia)])
+
+        st.write(f"A palavra **{palavra}** apareceu em **{total}** notícia(s).")
+
+elif opcao == "Comparar duas palavras":
+    palavra1 = st.text_input("Palavra 1").strip().lower()
+    palavra2 = st.text_input("Palavra 2").strip().lower()
+
+    if palavra1 and palavra2:
+        if modo == "Por dia":
+            textos = df_filtrado["Notícias"].dropna()
+        else:
+            textos = df["Notícias"].dropna()
+
+        count1 = sum([1 for noticia in textos if palavra1 in limpar_texto(noticia)])
+        count2 = sum([1 for noticia in textos if palavra2 in limpar_texto(noticia)])
+
+        st.write(f"📌 **{palavra1}**: {count1} ocorrência(s)")
+        st.write(f"📌 **{palavra2}**: {count2} ocorrência(s)")
+
+        fig2, ax2 = plt.subplots()
+        ax2.bar([palavra1, palavra2], [count1, count2], color=["mediumorchid", "gold"])
+        ax2.set_ylabel("Frequência")
+        st.pyplot(fig2)
+
