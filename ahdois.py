@@ -20,51 +20,79 @@ import string
 
 st.markdown("""
 <style>
-    /* Global app background */
     .stApp {
         background-image: url('https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/74550e7f84f783edd33a2e6f0ec260b9cf112078/fundodetela.jpg');
         background-size: cover;
         background-attachment: fixed;
     }
 
-    /* General text color for all elements */
-    body, html, .stMarkdown, .stText, .stRadio, .stSelectbox, .stSlider, .stTextInput, .stButton, .css-1cpxqw2, .css-qrbaxs, .css-1h7ebrz, .css-16idsys, .css-1xarl3l, .css-1wivap2, .css-1v0mbdj, .css-1g0n5qn, .css-1v0mbdj, .css-1aumxhk {
+    body, html, .stMarkdown, .stText, .stRadio, .stSelectbox, .stSlider, .stTextInput, .stButton {
         color: black !important;
     }
 
-    /* Ensure specific Streamlit component labels are black */
-    .stRadio > label, .stSelectbox > label, .stSlider > label, .stTextInput > label, .stDateInput > label, .stTimeInput > label, .stNumberInput > label {
+    .stRadio > label, .stSelectbox > label, .stSlider > label, .stTextInput > label,
+    .stDateInput > label, .stTimeInput > label, .stNumberInput > label {
         color: black !important;
     }
 
-    /* Text within Streamlit input fields */
-    input[type="text"], input[type="number"], textarea, .st-bh, .st-bo, .st-bp { /* Added .st-bh, .st-bo, .st-bp for specific input text */
+    input[type="text"], input[type="number"], textarea,
+    .st-bh, .st-bo, .st-bp,
+    .stTextInput > div > div > input,
+    .stSelectbox div[data-baseweb="select"] div[role="button"] {
         color: black !important;
-        background-color: rgba(255, 255, 255, 0.5) !important; /* Keep background translucent */
+        background-color: rgba(255, 255, 255, 0.0) !important;
         border: 1px solid #444 !important;
     }
 
-    /* Radio button dots */
     input[type="radio"] {
         accent-color: black !important;
     }
 
-    /* Ensure text within selectbox options and slider values are black */
     .stSelectbox div[data-baseweb="select"] div[role="listbox"] div[data-baseweb="option"] {
         color: black !important;
-        background-color: white !important; /* Make options background white for readability */
+        background-color: white !important;
     }
 
-    .stSlider .st-bg, .stSlider .st-bd { /* Text displaying slider value */
-        color: black !important;
-    }
-    
-    /* Specific styling for the 'Nada' options in radio buttons, if they were still white */
-    .stRadio div[role="radiogroup"] > div > label > div {
+    .stSlider .st-bg, .stSlider .st-bd {
         color: black !important;
     }
 
-    /* Custom Header Styling (already good, just including for completeness) */
+    .stRadio > div[role="radiogroup"],
+    .stSelectbox > div[data-baseweb="select"] {
+        background-color: transparent !important;
+    }
+
+    .stRadio div[role="radiogroup"] > div {
+        background-color: transparent !important;
+    }
+
+    .stRadio div[role="radiogroup"] > div > label {
+        background-color: transparent !important;
+    }
+
+    .stButton > button {
+        background-color: rgba(255, 255, 255, 0.5) !important;
+        color: black !important;
+        border: 1px solid #444 !important;
+    }
+
+    .stBlock, .stVerticalBlock, .stHorizontalBlock {
+        background-color: transparent !important;
+    }
+
+    div.stMarkdown {
+        background-color: transparent !important;
+    }
+
+    .css-1cpxqw2, .css-qrbaxs, .css-1h7ebrz, .css-16idsys, .css-1xarl3l,
+    .css-1wivap2, .css-1v0mbdj, .css-1g0n5qn, .css-1v0mbdj, .css-1aumxhk,
+    .css-r6z25j,
+    .css-1fv80k9,
+    .css-1d3l2iu,
+    .css-1y48h6y {
+        background-color: transparent !important;
+    }
+
     .custom-header {
         display: flex;
         justify-content: center;
@@ -78,6 +106,7 @@ st.markdown("""
         margin: 0;
         text-align: center;
         color: black !important;
+        background-color: transparent !important;
     }
 </style>
 
