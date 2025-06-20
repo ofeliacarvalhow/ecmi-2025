@@ -16,7 +16,6 @@ from collections import Counter
 import matplotlib.pyplot as plt
 import streamlit as st
 import string
-
 st.markdown("""
 <style>
     .stApp {
@@ -32,28 +31,21 @@ st.markdown("""
 
     input[type="text"], input[type="number"] {
         color: black !important;
-        background-color: rgba(255, 255, 255, 0.7) !important;
-        border: 1px solid #666 !important;
+        background-color: rgba(255, 255, 255, 0.4) !important;
+        border: 1px solid #444 !important;
     }
-
-
-    .stRadio > div {
-        color: black !important;
-        background-color: rgba(255, 255, 255, 0.6);
-        border-radius: 5px;
-        padding: 0.5rem;
-    }
-
-
-    label, .css-1cpxqw2 {
-        color: black !important;
-    }
-
 
     input[type="radio"] {
-        accent-color: #000 !important;
+        accent-color: black !important;
+    }
+    .stRadio, .stRadio > div, label, .stSelectbox, .stSlider, .stTextInput, .stMarkdown {
+        background-color: transparent !important;
+        color: black !important;
     }
 
+    .css-1cpxqw2, .css-qrbaxs, .css-1h7ebrz {
+        color: black !important;
+    }
 
     .custom-header {
         display: flex;
@@ -75,7 +67,6 @@ st.markdown("""
     <img src="https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/74550e7f84f783edd33a2e6f0ec260b9cf112078/iconepng.png" width="70">
 </div>
 """, unsafe_allow_html=True)
-
 
 def peganoticia():
     cnn = 'https://www.cnnbrasil.com.br/'
