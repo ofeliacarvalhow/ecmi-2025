@@ -16,6 +16,7 @@ from collections import Counter
 import matplotlib.pyplot as plt
 import streamlit as st
 import string
+
 st.markdown("""
 <style>
     .stApp {
@@ -35,18 +36,30 @@ st.markdown("""
         border: 1px solid #444 !important;
     }
 
+
     input[type="radio"] {
         accent-color: black !important;
     }
-    .stRadio, .stRadio > div, label, .stSelectbox, .stSlider, .stTextInput, .stMarkdown {
+
+    .stRadio, .stSelectbox, .stSlider, .stTextInput, .stMarkdown {
         background-color: transparent !important;
         color: black !important;
     }
 
-    .css-1cpxqw2, .css-qrbaxs, .css-1h7ebrz {
+ 
+    .stRadio > div > label,
+    .stRadio > div div[role="radiogroup"] > div > label > div {
         color: black !important;
     }
 
+  
+    .css-1cpxqw2, .css-qrbaxs, .css-1h7ebrz,
+    .css-16idsys, .css-1xarl3l, .css-1wivap2,
+    .css-1v0mbdj, .css-1g0n5qn {
+        color: black !important;
+    }
+
+  
     .custom-header {
         display: flex;
         justify-content: center;
@@ -62,11 +75,13 @@ st.markdown("""
         color: black !important;
     }
 </style>
+
 <div class="custom-header">
     <h1>Palavras mais frequentes nas notícias CNN</h1>
     <img src="https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/74550e7f84f783edd33a2e6f0ec260b9cf112078/iconepng.png" width="70">
 </div>
 """, unsafe_allow_html=True)
+
 
 def peganoticia():
     cnn = 'https://www.cnnbrasil.com.br/'
