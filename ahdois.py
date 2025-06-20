@@ -23,21 +23,15 @@ icon_url = "https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/74550e7f
 
 st.markdown(f"""
     <style>
-        body {{
+        .stApp {{
             background-image: url('{background_url}');
             background-size: cover;
             background-attachment: fixed;
-            color: black;
+            color: black !important;
         }}
-        .stApp {{
-            background: transparent;
-            color: black;
-        }}
-        h1 {{
-            text-align: center;
-            font-size: 50px;
-            margin-bottom: 40px;
-            color: black;
+        html, body, [class*="css"] {{
+            color: black !important;
+            background-color: transparent;
         }}
         .custom-header {{
             display: flex;
@@ -45,6 +39,10 @@ st.markdown(f"""
             align-items: center;
             gap: 20px;
             margin-bottom: 40px;
+        }}
+        .custom-header h1 {{
+            font-size: 50px;
+            margin: 0;
         }}
     </style>
     <div class="custom-header">
@@ -135,11 +133,6 @@ if 'Data' not in df.columns:
 else:
     df['Data'] = pd.to_datetime(df['Data'], errors='coerce')
 df = df.dropna(subset=['Data'])
-
-st.markdown("""
-    <h1 style='text-align: center; font-size: 50px;'>Palavras mais frequentes nas notícias CNN</h1>
-    <div style='margin-bottom: 40px;'></div>
-""", unsafe_allow_html=True)
 
 pagina = st.radio("Selecione o que você deseja visualizar:", ["Nada", "Palavras mais frequentes", "Pesquisar ou comparar palavras"])
 
