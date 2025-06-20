@@ -18,6 +18,40 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import string
 
+background_url = "https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/74550e7f84f783edd33a2e6f0ec260b9cf112078/fundodetela.jpg"
+icon_url = "https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/74550e7f84f783edd33a2e6f0ec260b9cf112078/iconepng.png"
+
+st.markdown(f"""
+    <style>
+        body {{
+            background-image: url('{background_url}');
+            background-size: cover;
+            background-attachment: fixed;
+            color: black;
+        }}
+        .stApp {{
+            background: transparent;
+            color: black;
+        }}
+        h1 {{
+            text-align: center;
+            font-size: 50px;
+            margin-bottom: 40px;
+            color: black;
+        }}
+        .custom-header {{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }}
+    </style>
+    <div class="custom-header">
+        <h1>Palavras mais frequentes nas notícias CNN</h1>
+        <img src="{icon_url}" width="70">
+    </div>
+""", unsafe_allow_html=True)
+
 def peganoticia():
     cnn = 'https://www.cnnbrasil.com.br/'
     response = requests.get(cnn, headers={'User-Agent': 'Mozilla/5.0'})
