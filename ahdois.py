@@ -93,7 +93,7 @@ top = palavrascont.most_common(10)
 print(palavrascont)
 print(top)
 
-df = pd.read_csv('noticias_cnn.csv')
+df = pd.read_csv('noticias_cnn(3).csv')
 if 'Data' not in df.columns:
     df['Data'] = pd.Timestamp.now()
 else:
@@ -163,6 +163,8 @@ elif pagina == "Pesquisar ou comparar palavras":
     elif opcao == "Comparar duas palavras":
         palavra1 = st.text_input("Palavra 1").strip().lower()
         palavra2 = st.text_input("Palavra 2").strip().lower()
+        tipo_grafico = st.radio("Tipo de gráfico para comparação:", ["Colunas", "Pizza"], key="grafico_comparacao")
+
         if palavra1 and palavra2:
             textos = df_filtrado["Notícias"].dropna()
             count1 = sum([1 for noticia in textos if palavra1 in limpar_texto(noticia)])
@@ -172,7 +174,11 @@ elif pagina == "Pesquisar ou comparar palavras":
             st.write(f"{palavra2}: {count2} ocorrência(s)")
 
             fig2, ax2 = plt.subplots()
-            ax2.pie([count1, count2], labels=[palavra1, palavra2], autopct='%1.1f%%')
+            if tipo_grafico == "Colunas":
+                ax2.bar([palavra1, palavra2], [count1, count2], color=["mediumorchid", "gold"])
+                ax2.set_ylabel("Frequência")
+            else:
+                ax2.pie([count1, count2], labels=[palavra1, palavra2], autopct='%1.1f%%')
             st.pyplot(fig2)
 
             noticias1 = [noticia for noticia in textos if palavra1 in limpar_texto(noticia)]
