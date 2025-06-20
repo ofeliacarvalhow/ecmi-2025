@@ -100,96 +100,100 @@ else:
     df['Data'] = pd.to_datetime(df['Data'], errors='coerce')
 df = df.dropna(subset=['Data'])
 
-st.title("Palavras mais frequentes nas notícias CNN")
+st.markdown("<h1 style='text-align: center;'>Palavras mais frequentes nas notícias CNN</h1>", unsafe_allow_html=True)
 
-pagina = st.radio("O que você deseja visualizar?", ["Palavras mais frequentes", "Pesquisar ou comparar palavras"])
+pagina = st.radio("Selecione o que você deseja visualizar:", ["Palavras mais frequentes", "Pesquisar ou comparar palavras"])
 
 if pagina == "Palavras mais frequentes":
     modo = st.radio("Modo de análise:", ["Geral", "Por dia"])
-    grafico = st.radio("Tipo de gráfico:", ["Colunas", "Barras horizontais", "Pizza"])
-    qtd = st.slider("Quantidade de palavras:", 5, 30, 10)
 
-    if modo == "Por dia":
-        datas_disponiveis = sorted(df['Data'].dt.date.unique())
-        data_escolhida = st.selectbox("Escolha uma data disponível:", datas_disponiveis)
-        df_filtrado = df[df['Data'].dt.date == data_escolhida]
-    else:
-        df_filtrado = df
+    if modo:
+        grafico = st.radio("Tipo de gráfico:", ["Colunas", "Barras horizontais", "Pizza"])
+        qtd = st.slider("Quantidade de palavras:", 5, 30, 10)
 
-    todas = []
-    for texto in df_filtrado["Notícias"].dropna():
-        todas.extend(limpar_texto(texto))
+        if modo == "Por dia":
+            datas_disponiveis = sorted(df['Data'].dt.date.unique())
+            data_escolhida = st.selectbox("Escolha uma data disponível:", datas_disponiveis)
+            df_filtrado = df[df['Data'].dt.date == data_escolhida]
+        else:
+            df_filtrado = df
 
-    contagem = Counter(todas)
-    mais_comuns = contagem.most_common(qtd)
+        todas = []
+        for texto in df_filtrado["Notícias"].dropna():
+            todas.extend(limpar_texto(texto))
 
-    if mais_comuns:
-        palavras, freq = zip(*mais_comuns)
-        fig, ax = plt.subplots(figsize=(max(10, qtd), 6))
-        if grafico == "Colunas":
-            ax.bar(palavras, freq, color='skyblue')
-            ax.set_xticklabels(palavras, rotation=45, ha='right')
-        elif grafico == "Barras horizontais":
-            ax.barh(palavras, freq, color='salmon')
-            ax.invert_yaxis()
-        elif grafico == "Pizza":
-            fig, ax = plt.subplots()
-            ax.pie(freq, labels=palavras, autopct='%1.1f%%')
-        st.pyplot(fig)
+        contagem = Counter(todas)
+        mais_comuns = contagem.most_common(qtd)
+
+        if mais_comuns:
+            palavras, freq = zip(*mais_comuns)
+            fig, ax = plt.subplots(figsize=(max(10, qtd), 6))
+            if grafico == "Colunas":
+                ax.bar(palavras, freq, color='skyblue')
+                ax.set_xticklabels(palavras, rotation=45, ha='right')
+            elif grafico == "Barras horizontais":
+                ax.barh(palavras, freq, color='salmon')
+                ax.invert_yaxis()
+            elif grafico == "Pizza":
+                fig, ax = plt.subplots()
+                ax.pie(freq, labels=palavras, autopct='%1.1f%%')
+            st.pyplot(fig)
 
 elif pagina == "Pesquisar ou comparar palavras":
     modo = st.radio("Modo de análise:", ["Geral", "Por dia"], key="modo2")
-    if modo == "Por dia":
-        datas_disponiveis = sorted(df['Data'].dt.date.unique())
-        data_escolhida = st.selectbox("Escolha uma data disponível:", datas_disponiveis, key="data2")
-        df_filtrado = df[df['Data'].dt.date == data_escolhida]
-    else:
-        df_filtrado = df
 
-    opcao = st.radio("Tipo de busca:", ["Pesquisar uma palavra", "Comparar duas palavras"])
+    if modo:
+        if modo == "Por dia":
+            datas_disponiveis = sorted(df['Data'].dt.date.unique())
+            data_escolhida = st.selectbox("Escolha uma data disponível:", datas_disponiveis, key="data2")
+            df_filtrado = df[df['Data'].dt.date == data_escolhida]
+        else:
+            df_filtrado = df
 
-    if opcao == "Pesquisar uma palavra":
-        palavra = st.text_input("Digite a palavra para pesquisar").strip().lower()
-        if palavra:
-            textos = df_filtrado["Notícias"].dropna()
-            total = sum([1 for noticia in textos if palavra in limpar_texto(noticia)])
-            st.write(f"A palavra **{palavra}** apareceu em **{total}** notícia(s).")
-            noticias_filtradas = [noticia for noticia in textos if palavra in limpar_texto(noticia)]
-            if noticias_filtradas:
-                st.markdown("**Títulos contendo a palavra:**")
-                for n in noticias_filtradas:
-                    st.markdown(f"- {n}")
+        opcao = st.radio("Tipo de busca:", ["Pesquisar uma palavra", "Comparar duas palavras"])
 
-    elif opcao == "Comparar duas palavras":
-        palavra1 = st.text_input("Palavra 1").strip().lower()
-        palavra2 = st.text_input("Palavra 2").strip().lower()
-        tipo_grafico = st.radio("Tipo de gráfico para comparação:", ["Colunas", "Pizza"], key="grafico_comparacao")
+        if opcao == "Pesquisar uma palavra":
+            palavra = st.text_input("Digite a palavra para pesquisar").strip().lower()
+            if palavra:
+                textos = df_filtrado["Notícias"].dropna()
+                total = sum([1 for noticia in textos if palavra in limpar_texto(noticia)])
+                st.write(f"A palavra **{palavra}** apareceu em **{total}** notícia(s).")
+                noticias_filtradas = [noticia for noticia in textos if palavra in limpar_texto(noticia)]
+                if noticias_filtradas:
+                    st.markdown("**Títulos contendo a palavra:**")
+                    for n in noticias_filtradas:
+                        st.markdown(f"- {n}")
 
-        if palavra1 and palavra2:
-            textos = df_filtrado["Notícias"].dropna()
-            count1 = sum([1 for noticia in textos if palavra1 in limpar_texto(noticia)])
-            count2 = sum([1 for noticia in textos if palavra2 in limpar_texto(noticia)])
+        elif opcao == "Comparar duas palavras":
+            palavra1 = st.text_input("Palavra 1").strip().lower()
+            palavra2 = st.text_input("Palavra 2").strip().lower()
+            tipo_grafico = st.radio("Tipo de gráfico para comparação:", ["Colunas", "Pizza"], key="grafico_comparacao")
 
-            st.write(f"{palavra1}: {count1} ocorrência(s)")
-            st.write(f"{palavra2}: {count2} ocorrência(s)")
+            if palavra1 and palavra2:
+                textos = df_filtrado["Notícias"].dropna()
+                count1 = sum([1 for noticia in textos if palavra1 in limpar_texto(noticia)])
+                count2 = sum([1 for noticia in textos if palavra2 in limpar_texto(noticia)])
 
-            fig2, ax2 = plt.subplots()
-            if tipo_grafico == "Colunas":
-                ax2.bar([palavra1, palavra2], [count1, count2], color=["mediumorchid", "gold"])
-                ax2.set_ylabel("Frequência")
-            else:
-                ax2.pie([count1, count2], labels=[palavra1, palavra2], autopct='%1.1f%%')
-            st.pyplot(fig2)
+                st.write(f"{palavra1}: {count1} ocorrência(s)")
+                st.write(f"{palavra2}: {count2} ocorrência(s)")
 
-            noticias1 = [noticia for noticia in textos if palavra1 in limpar_texto(noticia)]
-            noticias2 = [noticia for noticia in textos if palavra2 in limpar_texto(noticia)]
+                fig2, ax2 = plt.subplots()
+                if tipo_grafico == "Colunas":
+                    ax2.bar([palavra1, palavra2], [count1, count2], color=["mediumorchid", "gold"])
+                    ax2.set_ylabel("Frequência")
+                else:
+                    ax2.pie([count1, count2], labels=[palavra1, palavra2], autopct='%1.1f%%')
+                st.pyplot(fig2)
 
-            if noticias1:
-                st.markdown(f"**Títulos com {palavra1}:**")
-                for n in noticias1:
-                    st.markdown(f"- {n}")
+                noticias1 = [noticia for noticia in textos if palavra1 in limpar_texto(noticia)]
+                noticias2 = [noticia for noticia in textos if palavra2 in limpar_texto(noticia)]
 
-            if noticias2:
-                st.markdown(f"**Títulos com {palavra2}:**")
-                for n in noticias2:
-                    st.markdown(f"- {n}")
+                if noticias1:
+                    st.markdown(f"**Títulos com {palavra1}:**")
+                    for n in noticias1:
+                        st.markdown(f"- {n}")
+
+                if noticias2:
+                    st.markdown(f"**Títulos com {palavra2}:**")
+                    for n in noticias2:
+                        st.markdown(f"- {n}")
