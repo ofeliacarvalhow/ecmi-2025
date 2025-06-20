@@ -20,19 +20,27 @@ import string
 
 background_url = "https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/74550e7f84f783edd33a2e6f0ec260b9cf112078/fundodetela.jpg"
 icon_url = "https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/74550e7f84f783edd33a2e6f0ec260b9cf112078/iconepng.png"
-
 st.markdown(f"""
     <style>
         .stApp {{
             background-image: url('{background_url}');
             background-size: cover;
             background-attachment: fixed;
-            color: black !important;
         }}
+
         html, body, [class*="css"] {{
             color: black !important;
-            background-color: transparent;
+            background-color: transparent !important;
         }}
+
+        label, .stRadio > div, .stSelectbox > div, .stSlider, .stTextInput > div {{
+            color: black !important;
+        }}
+
+        .css-1v0mbdj, .css-14xtw13, .css-1e5imcs, .css-qrbaxs, .css-16idsys {{
+            color: black !important;
+        }}
+
         .custom-header {{
             display: flex;
             justify-content: center;
@@ -40,6 +48,7 @@ st.markdown(f"""
             gap: 20px;
             margin-bottom: 40px;
         }}
+
         .custom-header h1 {{
             font-size: 50px;
             margin: 0;
