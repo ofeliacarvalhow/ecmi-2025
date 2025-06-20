@@ -17,7 +17,6 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import string
 
-
 st.markdown("""
 <style>
     .stApp {
@@ -26,11 +25,35 @@ st.markdown("""
         background-attachment: fixed;
     }
 
-    html, body, [class*="css"], h1, h2, h3, h4, h5, h6, p, label, div, span,
-    .stRadio, .stSelectbox, .stTextInput, .stSlider, .stMarkdown, .stDataFrame {
+    html, body, [class*="css"] {
         color: black !important;
         background-color: transparent !important;
     }
+
+    input[type="text"], input[type="number"] {
+        color: black !important;
+        background-color: rgba(255, 255, 255, 0.7) !important;
+        border: 1px solid #666 !important;
+    }
+
+
+    .stRadio > div {
+        color: black !important;
+        background-color: rgba(255, 255, 255, 0.6);
+        border-radius: 5px;
+        padding: 0.5rem;
+    }
+
+
+    label, .css-1cpxqw2 {
+        color: black !important;
+    }
+
+
+    input[type="radio"] {
+        accent-color: #000 !important;
+    }
+
 
     .custom-header {
         display: flex;
