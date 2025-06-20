@@ -25,17 +25,11 @@ st.markdown("""
         background-attachment: fixed;
     }
 
-    .stApp div {
-        background-color: transparent !important;
-    }
-
     body, html, .stMarkdown, .stText, .stRadio, .stSelectbox, .stSlider, .stTextInput, .stButton,
     div[data-testid="stVerticalBlock"], div[data-testid="stHorizontalBlock"],
-    div[data-testid="stBlock"],
-    div[data-testid="stMarkdownContainer"],
-    div[data-testid="stTextContainer"],
-    p, li, span, h1, h2, h3, h4, h5, h6 {
+    div[data-testid="stBlock"] {
         color: black !important;
+        background-color: transparent !important;
     }
 
     .stRadio > label, .stSelectbox > label, .stSlider > label, .stTextInput > label,
@@ -65,10 +59,44 @@ st.markdown("""
         color: black !important;
     }
 
+    .stRadio > div[role="radiogroup"],
+    .stSelectbox > div[data-baseweb="select"] {
+        background-color: transparent !important;
+    }
+
+    .stRadio div[role="radiogroup"] > div {
+        background-color: transparent !important;
+    }
+
+    .stRadio div[role="radiogroup"] > div > label {
+        background-color: transparent !important;
+    }
+
     .stButton > button {
         background-color: rgba(255, 255, 255, 0.5) !important;
         color: black !important;
         border: 1px solid #444 !important;
+    }
+
+    .stBlock, .stVerticalBlock, .stHorizontalBlock {
+        background-color: transparent !important;
+    }
+
+    div.stMarkdown {
+        background-color: transparent !important;
+    }
+
+    .css-1cpxqw2, .css-qrbaxs, .css-1h7ebrz, .css-16idsys, .css-1xarl3l,
+    .css-1wivap2, .css-1v0mbdj, .css-1g0n5qn, .css-1v0mbdj, .css-1aumxhk,
+    .css-r6z25j,
+    .css-1fv80k9,
+    .css-1d3l2iu,
+    .css-1y48h6y,
+    .css-1d0lmz3,
+    .css-1nm0pmu,
+    .css-10y5g99,
+    .css-1dp5vir {
+        background-color: transparent !important;
     }
 
     .custom-header {
