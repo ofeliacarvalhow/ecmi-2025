@@ -44,6 +44,7 @@ st.markdown(f"""
             justify-content: center;
             align-items: center;
             gap: 20px;
+            margin-bottom: 40px;
         }}
     </style>
     <div class="custom-header">
@@ -51,6 +52,7 @@ st.markdown(f"""
         <img src="{icon_url}" width="70">
     </div>
 """, unsafe_allow_html=True)
+
 
 def peganoticia():
     cnn = 'https://www.cnnbrasil.com.br/'
