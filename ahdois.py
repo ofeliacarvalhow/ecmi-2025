@@ -19,20 +19,23 @@ import string
 
 st.markdown("""
 <style>
+    
     .stApp {
         background-image: url('https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/74550e7f84f783edd33a2e6f0ec260b9cf112078/fundodetela.jpg');
         background-size: cover;
         background-attachment: fixed;
     }
 
+  
     html, body, [class*="css"] {
         color: black !important;
         background-color: transparent !important;
     }
 
-    input[type="text"], input[type="number"] {
+
+    input[type="text"], input[type="number"], textarea {
         color: black !important;
-        background-color: rgba(255, 255, 255, 0.4) !important;
+        background-color: rgba(255, 255, 255, 0.5) !important;
         border: 1px solid #444 !important;
     }
 
@@ -41,22 +44,20 @@ st.markdown("""
         accent-color: black !important;
     }
 
-    .stRadio, .stSelectbox, .stSlider, .stTextInput, .stMarkdown {
-        background-color: transparent !important;
+    .stRadio label, .stRadio div[role="radiogroup"] > div > label > div,
+    .stSelectbox label, .stSlider label, .stTextInput label {
         color: black !important;
     }
 
- 
-    .stRadio > div > label,
-    .stRadio > div div[role="radiogroup"] > div > label > div {
-        color: black !important;
-    }
-
-  
     .css-1cpxqw2, .css-qrbaxs, .css-1h7ebrz,
     .css-16idsys, .css-1xarl3l, .css-1wivap2,
-    .css-1v0mbdj, .css-1g0n5qn {
+    .css-1v0mbdj, .css-1g0n5qn, .css-1v0mbdj, .css-1aumxhk {
         color: black !important;
+    }
+
+   
+    .stRadio, .stSelectbox, .stSlider, .stTextInput, .stMarkdown {
+        background-color: transparent !important;
     }
 
   
