@@ -16,51 +16,37 @@ from collections import Counter
 import matplotlib.pyplot as plt
 import streamlit as st
 import string
-
 st.markdown("""
 <style>
-    
     .stApp {
         background-image: url('https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/74550e7f84f783edd33a2e6f0ec260b9cf112078/fundodetela.jpg');
         background-size: cover;
         background-attachment: fixed;
     }
 
-  
     html, body, [class*="css"] {
         color: black !important;
         background-color: transparent !important;
     }
 
-
-    input[type="text"], input[type="number"], textarea {
+    input[type="text"], input[type="number"] {
         color: black !important;
-        background-color: rgba(255, 255, 255, 0.5) !important;
+        background-color: rgba(255, 255, 255, 0.4) !important;
         border: 1px solid #444 !important;
     }
-
 
     input[type="radio"] {
         accent-color: black !important;
     }
-
-    .stRadio label, .stRadio div[role="radiogroup"] > div > label > div,
-    .stSelectbox label, .stSlider label, .stTextInput label {
-        color: black !important;
-    }
-
-    .css-1cpxqw2, .css-qrbaxs, .css-1h7ebrz,
-    .css-16idsys, .css-1xarl3l, .css-1wivap2,
-    .css-1v0mbdj, .css-1g0n5qn, .css-1v0mbdj, .css-1aumxhk {
-        color: black !important;
-    }
-
-   
-    .stRadio, .stSelectbox, .stSlider, .stTextInput, .stMarkdown {
+    .stRadio, .stRadio > div, label, .stSelectbox, .stSlider, .stTextInput, .stMarkdown {
         background-color: transparent !important;
+        color: black !important;
     }
 
-  
+    .css-1cpxqw2, .css-qrbaxs, .css-1h7ebrz {
+        color: black !important;
+    }
+
     .custom-header {
         display: flex;
         justify-content: center;
@@ -76,13 +62,11 @@ st.markdown("""
         color: black !important;
     }
 </style>
-
 <div class="custom-header">
     <h1>Palavras mais frequentes nas notícias CNN</h1>
     <img src="https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/74550e7f84f783edd33a2e6f0ec260b9cf112078/iconepng.png" width="70">
 </div>
 """, unsafe_allow_html=True)
-
 
 def peganoticia():
     cnn = 'https://www.cnnbrasil.com.br/'
