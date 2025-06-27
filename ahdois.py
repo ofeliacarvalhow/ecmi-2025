@@ -16,57 +16,50 @@ from collections import Counter
 import matplotlib.pyplot as plt
 import streamlit as st
 import string
-st.markdown("""
-<style>
-    .stApp {
-        background-image: url('https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/74550e7f84f783edd33a2e6f0ec260b9cf112078/fundodetela.jpg');
-        background-size: cover;
-        background-attachment: fixed;
-    }
 
-    html, body, [class*="css"] {
-        color: black !important;
-        background-color: transparent !important;
-    }
+background_url = "https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/74550e7f84f783edd33a2e6f0ec260b9cf112078/fundodetela.jpg"
+icon_url = "https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/74550e7f84f783edd33a2e6f0ec260b9cf112078/iconepng.png"
+st.markdown(f"""
+    <style>
+        .stApp {{
+            background-image: url('{background_url}');
+            background-size: cover;
+            background-attachment: fixed;
+        }}
 
-    input[type="text"], input[type="number"] {
-        color: black !important;
-        background-color: rgba(255, 255, 255, 0.4) !important;
-        border: 1px solid #444 !important;
-    }
+        html, body, [class*="css"] {{
+            color: black !important;
+            background-color: transparent !important;
+        }}
 
-    input[type="radio"] {
-        accent-color: black !important;
-    }
-    .stRadio, .stRadio > div, label, .stSelectbox, .stSlider, .stTextInput, .stMarkdown {
-        background-color: transparent !important;
-        color: black !important;
-    }
+        .stRadio > div, .stSelectbox > div, .stSlider, label, .css-1n76uvr {{
+            color: black !important;
+        }}
 
-    .css-1cpxqw2, .css-qrbaxs, .css-1h7ebrz {
-        color: black !important;
-    }
+        .css-1cpxqw2, .css-1v0mbdj, .css-14xtw13 {{
+            color: black !important;
+        }}
 
-    .custom-header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        margin-bottom: 40px;
-    }
+        .custom-header {{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 40px;
+        }}
 
-    .custom-header h1 {
-        font-size: 50px;
-        margin: 0;
-        text-align: center;
-        color: black !important;
-    }
-</style>
-<div class="custom-header">
-    <h1>Palavras mais frequentes nas notícias CNN</h1>
-    <img src="https://raw.githubusercontent.com/ofeliacarvalhow/ecmi-2025/74550e7f84f783edd33a2e6f0ec260b9cf112078/iconepng.png" width="70">
-</div>
+        .custom-header h1 {{
+            font-size: 50px;
+            margin: 0;
+            text-align: center;
+        }}
+    </style>
+    <div class="custom-header">
+        <h1>Palavras mais frequentes nas notícias CNN</h1>
+        <img src="{icon_url}" width="70">
+    </div>
 """, unsafe_allow_html=True)
+
 
 def peganoticia():
     cnn = 'https://www.cnnbrasil.com.br/'
